@@ -70,8 +70,42 @@
 
             }
             
+        //Encapsulamos el movimiento hacia la derecha 
+            var moverDerecha = function () {
+                x++;
+
+            if (indiceAnimacion < 2 && tiempoAcumulado > 1){
+
+            tiempoAcumulado = 0;
+            indiceAnimacion++;
+             } 
+            }
+        // Encapsulamos el movimiento hacia la izquiera
+           var moverIzquierda = function () {
+               x--;
+
+            if (indiceAnimacion > 0 && tiempoAcumulado > 1) {
+                tiempoAcumulado = 0;
+                indiceAnimacion--;
+            }   
+           }
+        // Creamos una variable e igualamos los valores de las funciones
+           var moverPersonaje = moverDerecha;
+           function actualizarJuego () {
            
-   
+           var imagenActual = posiciones[indiceAnimacion];
+           contexto.drawImage (spriteSheet, imagenActual.x, imagenActual.y, 25, 16, x, y, 25, 16);
+
+        // llamamos a la funcion que mueve al personaje
+            moverPersonaje ();
+
+        // si el personaje supera los 200 pixeles, cambiamos la funcion 
+            if (x > 200) {
+            moverPersonaje = moverIzquierda;    
+
+            }    
+
+           }
 
            
         }
